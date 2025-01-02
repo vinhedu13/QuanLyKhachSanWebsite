@@ -1,0 +1,27 @@
+{% extends "Layout/base.html" %}
+
+{% block title %}{{ room_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="room-details">
+        <h1>{{ room_name }}</h1>
+        <img src="{{ url_for('static', filename='images/villa.jpg') }}" alt="{{ room_name }}" class="room-image">
+        <p class="room-description">Chi tiết về {{ room_name }}.</p>
+        <ul>
+            {% for detail in details %}
+            <li>{{ detail }}</li>
+            {% endfor %}
+        </ul>
+        <p>Giá: {{ price | int }} VND/đêm</p>
+        <button class="book-btn" onclick="bookRoom('{{ room_name }}', {{ price }})">Đặt Phòng</button>
+    </section>
+</div>
+
+<script>
+    function bookRoom(roomName, price) {
+        alert(`Bạn đã chọn ${roomName} với giá ${price} VND/đêm.`);
+        // Thực hiện logic gửi yêu cầu đặt phòng tại đây.
+    }
+</script>
+{% endblock %}
