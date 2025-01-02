@@ -13,8 +13,6 @@ import dao
 from flask import render_template, request, redirect, url_for, jsonify, flash, session
 from QLKSWEBSITE import app, db, models, utils
 from QLKSWEBSITE.dao import paypal, TaoPhieuDatPhong, taoID
-import win32print
-import win32api
 import os
 
 @app.route("/")
@@ -145,7 +143,7 @@ def thanhtoan_traphong():
                        ngay_tra_phong=str(phieuThuePhong_Phong.phieuthuephong.ngayTraPhong),
                        so_phong=str(phieuThuePhong_Phong.idPhong),
                        tong_tien=str(session.get('tongTien')))
-        dao.in_hoa_don_truc_tiep('hoa_don.pdf')
+        # dao.in_hoa_don_truc_tiep('hoa_don.pdf')
         return redirect(url_for('nhanvien'))
     else:
         return render_template('thanhtoan.html')
@@ -267,7 +265,7 @@ def payment_redirect():
                            ngay_tra_phong=str(phieuThuePhong_Phong.phieuthuephong.ngayTraPhong),
                            so_phong=str(phieuThuePhong_Phong.idPhong),
                            tong_tien=str(decoded_data.get('tongTien')))
-            dao.in_hoa_don_truc_tiep('hoa_don.pdf')
+            # dao.in_hoa_don_truc_tiep('hoa_don.pdf')
 
     return render_template('thanhtoanthanhcong.html')
 
@@ -360,7 +358,7 @@ def payment_success():
                                ngay_tra_phong=str(phieuThuePhong_Phong.phieuthuephong.ngayTraPhong),
                                so_phong=str(phieuThuePhong_Phong.idPhong),
                                tong_tien=str(session.get('tongTien')))
-                dao.in_hoa_don_truc_tiep('hoa_don.pdf')
+                # dao.in_hoa_don_truc_tiep('hoa_don.pdf')
 
         return render_template('thanhtoanthanhcong.html')
     else:

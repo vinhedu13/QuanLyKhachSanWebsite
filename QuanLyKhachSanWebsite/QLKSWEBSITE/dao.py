@@ -13,9 +13,6 @@ import requests
 import hmac
 import hashlib
 from sqlalchemy.orm import joinedload
-
-import win32api
-import win32print
 from flask import jsonify, request, url_for, redirect, render_template, render_template_string, session
 from flask_login import current_user
 from idna.idnadata import scripts
@@ -500,22 +497,22 @@ def TaoFilePDF(ten_khach_hang, ngay_nhan_phong, ngay_tra_phong, so_phong, tong_t
     c.save()
     print(f"Hóa đơn đã được tạo thành công: {file_name}")
 
-def in_hoa_don_truc_tiep(file_path):
-    try:
-        # Kiểm tra xem file PDF có tồn tại hay không
-        if not os.path.exists(file_path):
-            print(f"File {file_path} không tồn tại.")
-            return
-
-        # Lấy máy in mặc định
-        printer_name = "Microsoft Print to PDF"
-        print(f"Sử dụng máy in: {printer_name}")
-
-        # Gửi lệnh in file PDF
-        win32api.ShellExecute(0, "print", file_path, f'"{printer_name}"', ".", 0)
-        print(f"Hóa đơn {file_path} đã được gửi đến máy in.")
-    except Exception as e:
-        print(f"Lỗi khi in hóa đơn: {e}")
+# def in_hoa_don_truc_tiep(file_path):
+#     try:
+#         # Kiểm tra xem file PDF có tồn tại hay không
+#         if not os.path.exists(file_path):
+#             print(f"File {file_path} không tồn tại.")
+#             return
+#
+#         # Lấy máy in mặc định
+#         printer_name = "Microsoft Print to PDF"
+#         print(f"Sử dụng máy in: {printer_name}")
+#
+#         # Gửi lệnh in file PDF
+#         win32api.ShellExecute(0, "print", file_path, f'"{printer_name}"', ".", 0)
+#         print(f"Hóa đơn {file_path} đã được gửi đến máy in.")
+#     except Exception as e:
+#         print(f"Lỗi khi in hóa đơn: {e}")
 
 
 def GetPhieuDatPhongByIDorKhachHang(thongTin):
