@@ -2,8 +2,8 @@ import json, os
 from sqlalchemy.sql import extract
 from sqlalchemy.sql.functions import user
 from sqlalchemy import func
-from QLKSWEBSITE import db
-from QLKSWEBSITE.models import TaiKhoan, KhachHang, HoaDon, PhieuDatPhong, LoaiPhong, LoaiKhach, Phong, PhieuThuePhong, \
+from qlkswebsite import db
+from qlkswebsite.models import TaiKhoan, KhachHang, HoaDon, PhieuDatPhong, LoaiPhong, LoaiKhach, Phong, PhieuThuePhong, \
     PhieuThuePhong_Phong
 import hashlib
 

@@ -4,15 +4,15 @@ from sqlalchemy import func
 from datetime import datetime, date
 import uuid
 from sqlalchemy import and_
-from QLKSWEBSITE import app, login
+from qlkswebsite import app, login
 import paypalrestsdk
 from flask_login import login_user, logout_user, login_required, current_user
 from flask_sqlalchemy.model import Model
 from sqlalchemy.exc import SQLAlchemyError
 import dao
 from flask import render_template, request, redirect, url_for, jsonify, flash, session
-from QLKSWEBSITE import app, db, models, utils
-from QLKSWEBSITE.dao import paypal, TaoPhieuDatPhong, taoID
+from qlkswebsite import app, db, models, utils
+from qlkswebsite.dao import paypal, TaoPhieuDatPhong, taoID
 import os
 
 @app.route("/")
@@ -642,7 +642,7 @@ def traphong():
 #     return jsonify({"message": "Dữ liệu đã được xử lý thành công!"}), 200
 
 if __name__ == '__main__':
-    from QLKSWEBSITE.admin import *
+    from qlkswebsite.admin import *
 
     with app.app_context():
         print(datetime.now())

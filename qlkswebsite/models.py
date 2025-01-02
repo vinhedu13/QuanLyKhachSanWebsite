@@ -9,7 +9,7 @@ from pymysql.constants.FLAG import UNSIGNED
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean, column, DOUBLE, DateTime, Enum
 from sqlalchemy.dialects.mysql import DATETIME
 from sqlalchemy.orm import relationship, backref
-from QLKSWEBSITE import db, app
+from qlkswebsite import db, app
 
 
 class BaseModel(db.Model):

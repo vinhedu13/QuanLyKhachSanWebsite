@@ -9,14 +9,14 @@ from flask_admin.form import Select2Widget
 from sqlalchemy import ForeignKey
 
 import utils
-from QLKSWEBSITE import db
-from QLKSWEBSITE import app
-from QLKSWEBSITE.models import KhachHang, TaiKhoan, LoaiTaiKhoan, LoaiKhach, Phong, LoaiPhong, TyLePhuThu, BaseModel
+from qlkswebsite import db
+from qlkswebsite import app
+from qlkswebsite.models import KhachHang, TaiKhoan, LoaiTaiKhoan, LoaiKhach, Phong, LoaiPhong, TyLePhuThu, BaseModel
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import Admin, BaseView, expose, AdminIndexView
 from flask_login import logout_user, current_user
 
-from QLKSWEBSITE.utils import tuansuatsudung
+from qlkswebsite.utils import tuansuatsudung
 
 
 class MyAdminIndex(AdminIndexView):

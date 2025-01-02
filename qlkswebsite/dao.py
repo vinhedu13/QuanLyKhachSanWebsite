@@ -17,8 +17,8 @@ from flask import jsonify, request, url_for, redirect, render_template, render_t
 from flask_login import current_user
 from idna.idnadata import scripts
 from sqlalchemy import and_, or_, false
-from QLKSWEBSITE import db, models, app
-from QLKSWEBSITE.models import LoaiPhong, PhieuDatPhong
+from qlkswebsite import db, models, app
+from qlkswebsite.models import LoaiPhong, PhieuDatPhong
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 
