@@ -1,0 +1,242 @@
+{% extends "Layout/base.html" %}
+{% block content %}
+<div class="row">
+    <!-- Danh sách phòng trống -->
+    <div class="col-12 col-md-6 mb-4">
+        <div class="p-3 border rounded bg-white shadow-sm">
+            <h5 class="text-center text-secondary mb-3">Chọn Phòng</h5>
+            <div class="scrollable-box" style="max-height: 300px; overflow-y: auto;">
+                {% for p in phongTrong %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="phong{{ p.id }}" value="{{p.id}}">
+                    <label class="form-check-label" for="phong{{ p.id }}">{{ p.tenPhong }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Khu vực danh sách khách hàng -->
+    <div class="col-12 col-md-6 mb-4">
+        <div class="p-3 border rounded bg-white shadow-sm">
+            <h5 class="text-center text-secondary mb-3">Danh sách Khách hàng</h5>
+            <div id="customer-section">
+                <!-- Khu vực khách hàng sẽ được thêm vào đây -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<button class="btn btn-success mt-4" onclick="submitCustomerData()">Submit Khách Hàng</button>
+
+<script>
+    const roomCustomerData = {}; // Lưu trữ khách hàng theo phòng
+
+    // Tạo hoặc cập nhật danh sách khách hàng cho từng phòng
+    function updateCustomerSection(luongKhachToiDa) {
+        const selectedRooms = document.querySelectorAll('.form-check-input:checked');
+        const customerSection = document.getElementById('customer-section');
+
+        // Xóa các danh sách cũ
+        customerSection.innerHTML = '';
+
+        // Tạo danh sách khách hàng cho từng phòng được chọn
+        selectedRooms.forEach((room) => {
+            const roomId = room.value;
+
+            // Khởi tạo dữ liệu khách hàng nếu chưa tồn tại
+            if (!roomCustomerData[roomId]) {
+                roomCustomerData[roomId] = [];
+            }
+
+            // Tạo div riêng cho mỗi phòng
+            const roomDiv = document.createElement('div');
+            roomDiv.className = 'mb-4';
+            roomDiv.id = `room-customers-${roomId}`;
+            roomDiv.innerHTML = `
+                <h6 class="text-secondary">Phòng ${roomId}</h6>
+                <ul class="list-unstyled" id="customer-list-${roomId}">
+                    ${roomCustomerData[roomId].map((_, index) => generateCustomerHTML(roomId, index + 1)).join('')}
+                </ul>
+                <button class="btn btn-primary btn-sm mt-2" onclick="addCustomer(${luongKhachToiDa}, ${roomId})">
+                    Thêm Khách Hàng
+                </button>
+            `;
+            customerSection.appendChild(roomDiv);
+        });
+    }
+
+    // Thêm khách hàng vào danh sách của một phòng
+    function addCustomer(luongKhachToiDa, roomId) {
+        const currentCustomers = roomCustomerData[roomId] || [];
+
+        if (currentCustomers.length < luongKhachToiDa) {
+            const newCustomerIndex = currentCustomers.length + 1;
+            currentCustomers.push(`Khách hàng ${newCustomerIndex}`);
+
+            const customerList = document.getElementById(`customer-list-${roomId}`);
+            const newCustomerItem = document.createElement('li');
+            // newCustomerItem.className = 'mb-3 d-flex align-items-center justify-content-between';
+            // newCustomerItem.id = `customer-${roomId}-${newCustomerIndex}`;
+            newCustomerItem.innerHTML = generateCustomerHTML(roomId, newCustomerIndex);
+
+            customerList.appendChild(newCustomerItem);
+        } else {
+            alert(`Không thể thêm quá ${luongKhachToiDa} khách hàng vào phòng này!`);
+        }
+    }
+
+    // Xóa khách hàng
+    function deleteCustomer(roomId, customerIndex) {
+        // Xóa khách hàng khỏi dữ liệu
+        if (roomCustomerData[roomId]) {
+            roomCustomerData[roomId].splice(customerIndex - 1, 1);
+        }
+
+        // Lấy danh sách khách hàng hiện tại
+        const customerList = document.getElementById(`customer-list-${roomId}`);
+
+        // Làm mới giao diện danh sách khách hàng
+        customerList.innerHTML = roomCustomerData[roomId]
+            .map((_, index) => generateCustomerHTML(roomId, index + 1)) // Tạo lại danh sách với chỉ mục chính xác
+            .join('');
+    }
+
+
+    // Tạo HTML cho khách hàng
+    function generateCustomerHTML(roomId, customerIndex) {
+        return `
+            <li class="mb-3 d-flex align-items-center justify-content-between" id="customer-${roomId}-${customerIndex}">
+                <span id="span-customer-${roomId}-${customerIndex}">Khách hàng ${customerIndex}</span>
+                <div>
+                    <button class="btn btn-outline-primary btn-sm" onclick="openPopup(${roomId}, ${customerIndex})">Nhập Thông Tin</button>
+                    <button class="btn btn-outline-danger btn-sm ms-2" onclick="deleteCustomer(${roomId}, ${customerIndex})">Xóa</button>
+                </div>
+            </li>
+        `;
+    }
+
+    // Lắng nghe sự kiện thay đổi phòng
+    document.querySelectorAll('.form-check-input').forEach(input => {
+        input.addEventListener('change', () => {
+            const maxCustomersPerRoom = 4; // Ví dụ số khách tối đa mỗi phòng
+            updateCustomerSection(maxCustomersPerRoom);
+        });
+    });
+
+    // // Hàm submit dữ liệu khách hàng
+    // function submitCustomerData() {
+    //     const customerData = Object.entries(roomCustomerData).map(([roomId, customers]) => {
+    //         return {
+    //             roomId: roomId,
+    //             customers: customers.map((customer, index) => ({
+    //                 name: customer,
+    //                 index: index + 1
+    //             }))
+    //         };
+    //     });
+    //
+    //     // Gửi dữ liệu đến server
+    //     fetch('/submit-customers', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(customerData)
+    //     })
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 alert('Dữ liệu khách hàng đã được gửi thành công!');
+    //             } else {
+    //                 alert('Đã xảy ra lỗi khi gửi dữ liệu.');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Lỗi:', error);
+    //             alert('Đã xảy ra lỗi khi gửi dữ liệu.');
+    //         });
+    // }
+
+    // Tạo biến toàn cục để lưu thông tin trường hiện tại
+    let currentField = null;
+
+    // Mở popup và điền dữ liệu nếu có
+    function openPopup(roomId, customerIndex) {
+        currentField = {roomId, customerIndex}; // Lưu trữ thông tin hiện tại
+
+        // Lấy dữ liệu khách hàng hiện tại
+        const customerData = roomCustomerData[roomId] && roomCustomerData[roomId][customerIndex - 1];
+        document.getElementById('popupForm').reset();
+
+        // Mở modal
+        const modal = new bootstrap.Modal(document.getElementById('inputModal'));
+        modal.show();
+    }
+
+    // Hàm lưu dữ liệu
+    function saveData() {
+        // Lấy giá trị từ các trường nhập liệu
+        const fullName = document.getElementById('fullName').value.trim();
+        const identityCard = document.getElementById('identityCard').value.trim();
+        const loaiKhach = document.getElementById('loaiKhach').value;
+
+        // Kiểm tra tính hợp lệ của các trường
+        if (fullName && identityCard && loaiKhach) {
+            const {roomId, customerIndex} = currentField; // Lấy thông tin phòng và chỉ số khách hàng
+
+            // Cập nhật dữ liệu khách hàng
+            roomCustomerData[roomId][customerIndex - 1] = `${fullName} - ${identityCard} - ${loaiKhach}`;
+
+            // Cập nhật nhãn của khách hàng trong danh sách
+            const targetLabel = document.getElementById(`span-customer-${roomId}-${customerIndex}`);
+            if (targetLabel) {
+            targetLabel.innerText = `${fullName} (${identityCard}) - ${loaiKhach} - ${roomId}`;
+            }
+            // Đóng modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('inputModal'));
+            if (modal) {
+                modal.hide();
+            }
+        } else {
+            alert('Vui lòng nhập đầy đủ thông tin!');
+        }
+    }
+
+
+</script>
+<!-- Modal Nhập Thông Tin -->
+<div class="modal fade" id="inputModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Nhập Thông Tin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="popupForm">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="identityCard" class="form-label">Căn cước công dân</label>
+                        <input type="text" class="form-control" id="identityCard" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loaiKhach" class="form-label">Loại khách</label>
+                        <select class="form-select" id="loaiKhach" name="loaiKhach" required>
+                            <option value="" disabled selected>Chọn loại khách</option>
+                            <option value="Nội Địa">Nội Địa</option>
+                            <option value="Nước ngoài">Nước ngoài</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="saveData()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

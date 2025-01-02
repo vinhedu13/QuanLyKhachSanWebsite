@@ -1,0 +1,105 @@
+{% extends "Layout/base.html" %}
+{%block content%}
+<div>
+    <img src="{{ url_for('static', filename='images/canhan.png') }}" alt="" class="img-">
+</div>
+<div class="container">
+    <div class="search-container">
+        <form action="/timkiem" method="post"> <!-- Thay đổi action theo yêu cầu của bạn -->
+            <div class="search-box">
+                <div class="search-item">
+                    <label for="destination">Bạn muốn đến đâu?</label>
+                    <input list="destinations" id="destination" name="destination"
+                           placeholder="Nhập hoặc chọn điểm đến">
+                    <datalist id="destinations">
+                        <option value="Hà Nội">
+                        <option value="TP. Hồ Chí Minh">
+                        <option value="Đà Nẵng">
+                        <option value="Đà Lạt">
+                        <option value="Vũng Tàu">
+                    </datalist>
+                </div>
+                <div class="search-item">
+                    <label for="ngayNhanPhong">Ngày nhận phòng</label>
+                    <input type="date" id="checkin-date" name="ngayNhanPhong" class="form-control" required>
+                </div>
+                <div class="search-item">
+                    <label for="ngayTraPhong">Ngày trả phòng</label>
+                    <input type="date" id="checkout-date" name="ngayTraPhong" class="form-control" required>
+                </div>
+                <div class="msearch-item">
+                    <label for="soLuong">Số người</label>
+                    <div id="guest-picker">
+                        <input type="text" id="guests" name="soLuong" placeholder="Nhấp để chọn số người"
+                               class="form-control" readonly required>
+                        <div class="guest-dropdown">
+                            <div class="guest-row">
+                                <label for="soLuong">Số Phòng:</label>
+                                <button type="button" class="decrease" data-target="adults">-</button>
+                                <span id="adults-count">1</span>
+                                <button type="button" class="increase" data-target="adults">+</button>
+                            </div>
+                            <button type="button" class="apply-btn btn btn-primary" >Áp dụng</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="search-btn" onclick="kiemTraThoiGian()">Tìm</button> <!-- Nút submit -->
+            </div>
+        </form>
+    </div>
+
+    <section class="search">
+        <h1>Loại phòng</h1>
+        <div class="categories">
+            <div class="category">
+                <a href="\room\single"><img src="{{ url_for('static', filename='images/phongdon.jpg') }}"
+                                            alt="Phòng Đơn"></a>
+                <p>Phòng Thường</p>
+            </div>
+            <div class="category">
+                <a href="\room\double"><img src="{{ url_for('static', filename='images/phongdoi.jpg') }}"
+                                            alt="Phòng Đôi"></a>
+                <p>Phòng Thương Gia</p>
+            </div>
+            <div class="category">
+                <a href="\room\family"><img src="{{ url_for('static', filename='images/phonggiadinh.jpg') }}"
+                                            alt="Phòng Gia Đình"></a>
+                <p>Phòng VIP</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="alert alert-warning text-center mt-4" role="alert">
+            <h5 class="mb-3">🎉 Ưu đãi đặc biệt! 🎉</h5>
+            <p>Giảm giá đến <strong>50%</strong> cho tất cả đơn hàng! Chỉ còn <span id="promo-timer"></span>.</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Hàm kiểm tra thời gian nhận phòng
+    function KiemTraThoiGianNhanPhong_DatPhong(thoiGianNhan) {
+        const thoiGianDat = new Date(); // Lấy thời gian hiện tại
+        const thoiGianNhanDate = new Date(thoiGianNhan); // Chuyển đổi chuỗi thời gian nhận thành đối tượng Date
+
+        // Tính khoảng thời gian giữa thời gian nhận và thời gian đặt
+        const khoangThoiGian = thoiGianNhanDate - thoiGianDat;
+
+        // Chuyển đổi từ milliseconds sang days
+        const khoangThoiGianDays = Math.floor(khoangThoiGian / (1000 * 60 * 60 * 24));
+
+        return khoangThoiGianDays;
+    }
+
+    // Hàm xử lý sự kiện khi nhấn nút kiểm tra
+    function kiemTraThoiGian() {
+        const thoiGianNhan = document.getElementById("checkin-date").value; // Lấy giá trị từ input
+        const ketQua = KiemTraThoiGianNhanPhong_DatPhong(thoiGianNhan); // Gọi hàm kiểm tra
+        if (ketQua > 28) {
+            alert('Thời gian nhận không được quá 28 ngày kể từ khi đặt')
+            event.preventDefault();
+        }
+    }
+</script>
+
+{%endblock%}

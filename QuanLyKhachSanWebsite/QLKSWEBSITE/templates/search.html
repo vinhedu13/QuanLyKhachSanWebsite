@@ -1,0 +1,74 @@
+{% extends "Layout/base.html" %}
+{% block content %}
+{% for p in data %}
+<div class="container py-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+            <div class="row g-4 align-items-center">
+                <!-- Room Image -->
+                <div class="col-lg-4">
+                    <div class="position-relative">
+                        <img src="{{ url_for('static', filename='images/phongdon.jpg') }}" alt="Room Image" class="img-fluid rounded-3 w-100">
+                        <span class="position-absolute top-0 end-0 bg-danger text-white px-3 py-1 m-2 rounded-pill">
+                            Còn {{p['soPhongCon']}} phòng
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Room Details -->
+                <div class="col-lg-5">
+                    <h4 class="mb-3">{{p['tenLoaiPhong']}}</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-person-workspace me-2"></i>1 giường đôi lớn & 1 giường sofa</li>
+                        <li class="mb-2"><i class="bi bi-arrows-angle-expand me-2"></i>Diện tích phòng: {{p['dienTich']}} m²</li>
+                        <li class="mb-2"><i class="bi bi-tree me-2"></i>Hướng Vườn</li>
+                        <li class="mb-2"><i class="bi bi-door-open me-2"></i>Ban công/sân hiên</li>
+                        <li class="mb-2"><i class="bi bi-slash-circle me-2"></i>Không hút thuốc</li>
+                        <li><i class="bi bi-water me-2"></i>Bồn tắm/vòi sen riêng</li>
+                    </ul>
+
+                    <h5 class="mt-4 mb-3">Tiện nghi</h5>
+                    <div class="row g-2">
+                        <div class="col-6 d-flex align-items-center">
+                            <i class="bi bi-p-circle-fill me-2"></i><span>Bãi đậu xe</span>
+                        </div>
+                        <div class="col-6 d-flex align-items-center">
+                            <i class="bi bi-lightning-fill me-2"></i><span>Nhận phòng nhanh</span>
+                        </div>
+                        <div class="col-6 d-flex align-items-center">
+                            <i class="bi bi-wifi me-2"></i><span>WiFi miễn phí</span>
+                        </div>
+                        <div class="col-6 d-flex align-items-center">
+                            <i class="bi bi-bicycle me-2"></i><span>Phòng tập</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Section -->
+                <div class="col-lg-3">
+                    <div class="card h-100 border-0 bg-light">
+                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                            <p class="text-muted mb-2">Giá mỗi đêm:</p>
+                            <h3 class="text-success mb-4">{{p['donGia']}}</h3>
+                            <form action="/datphong" method="POST">
+                                <div class="d-flex justify-content-center gap-2 mb-3">
+                                    <input type="label" name="soLuong" class="form-control form-control-lg text-center" style="max-width: 80px;" value="{{soLuong}}" readonly>
+                                    <button class="btn btn-lg {% if p['soPhongCon'] < soLuong|int %}btn-danger{% else %}btn-primary{% endif %}" type="submit" {% if p['soPhongCon'] < soLuong|int %}disabled{% endif %}>
+                                        <i class="bi bi-calendar-check me-2"></i>Đặt ngay
+                                    </button>
+                                </div>
+                                <input type="hidden" name="id" value="{{ p['id'] }}">
+                                <input type="hidden" name="donGia" value="{{ p['donGia'] }}">
+                                <input type="hidden" name="ngayNhanPhong" value="{{ngayNhanPhong}}">
+                                <input type="hidden" name="ngayTraPhong" value="{{ngayTraPhong}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
