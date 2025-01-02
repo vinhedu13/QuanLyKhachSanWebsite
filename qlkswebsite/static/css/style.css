@@ -1,0 +1,943 @@
+* {
+    font-family: Tohoma;
+}
+
+body {
+    background: radial-gradient(circle, #ffaaad, #ffe8e3);
+
+
+    color: #FFFAE3;
+    background-position: center;
+}
+
+h1.subject {
+    text-align: center;
+}
+
+.btn-login {
+    background-color: #FFFAE3 !important;
+    color: #000000 !important;
+}
+
+/* Tăng chiều rộng cho dropdown-menu */
+.dropdown-menu {
+    width: 350px; /* Điều chỉnh độ rộng theo ý muốn */
+    padding: 10px;
+    display: block; /* Hiển thị menu khi di chuột */
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    left: 50%; /* Canh giữa menu theo chiều ngang */
+    transform: translateX(-50%); /* Đảm bảo căn giữa hoàn hảo */
+    z-index: 1050; /* Hiển thị phía trên các phần tử khác */
+}
+
+/* Định dạng nội dung bên trong dropdown-menu */
+.dropdown-menu .d-flex {
+    align-items: center;
+    margin-bottom: 10px; /* Tạo khoảng cách giữa các mục */
+}
+
+.dropdown-menu .img-thumbnail {
+    border: none;
+    height: 100px; /* Cố định chiều cao cho ảnh */
+    width: 100px; /* Cố định chiều rộng cho ảnh */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+.dropdown-menu .ms-2 {
+    font-size: 1.2rem; /* Điều chỉnh kích thước chữ */
+}
+
+/* Chỉnh khoảng cách trong navbar */
+.navbar-nav {
+    margin-left: auto; /* Đẩy các mục qua bên phải */
+}
+
+.nav-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category {
+    text-align: center;
+    width: 23%;
+}
+
+.category img {
+    width: 100%;
+    height: 250px; /* Hoặc bất kỳ chiều cao nào bạn muốn */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.destinations {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.destinations h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.destinations p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.destination-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.destination {
+    text-align: center;
+    width: 30%;
+}
+
+.destination img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Container for search bar */
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #ffdcb2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.search-item label {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.search-item input {
+    width: 180px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.search-item input[type="text"]::placeholder {
+    color: #888;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background-color: #FFFAE3;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #dddd87;
+}
+
+#guest-picker {
+    position: relative;
+    width: 100%;
+}
+
+#guests {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.guest-dropdown {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    z-index: 10;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.guest-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.guest-row label {
+    flex: 1;
+}
+
+.guest-row button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    line-height: 1;
+    border-radius: 4px;
+}
+
+.guest-row span {
+    width: 30px;
+    text-align: center;
+}
+
+.apply-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.apply-btn:hover {
+    background-color: #0056b3;
+}
+
+.checkbox3 label::before, .radio3 label::before {
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center
+}
+
+.checkbox3 label, .radio3 label {
+    white-space: nowrap;
+    cursor: pointer
+}
+
+.checkbox3 {
+    position: relative
+}
+
+.checkbox3 input {
+    position: absolute;
+    left: -9999px
+}
+
+.checkbox3 label::after, .checkbox3 label::before {
+    content: '';
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    display: block
+}
+
+.checkbox3 label {
+    display: block;
+    position: relative;
+    padding: 11px 0 11px 30px;
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: -4px
+}
+
+.checkbox3 label::before {
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    -webkit-transition: background-color .2s;
+    -moz-transition: background-color .2s;
+    transition: background-color .2s
+}
+
+.checkbox3 label::after {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    border: 12px solid #FFF;
+    margin: 1px;
+    -webkit-transition: all 50ms;
+    -moz-transition: all 50ms;
+    transition: all 50ms;
+    opacity: 0
+}
+
+.checkbox3 input:checked + label::before {
+    border-width: 1px;
+    border-style: solid;
+    background-color: #444;
+    border-color: #444;
+    color: #fff
+}
+
+.checkbox3 input:checked + label::after {
+    border: 3px solid #FFF;
+    opacity: 1
+}
+
+.checkbox3.checkbox-sm label {
+    padding: 8px 0 8px 22px
+}
+
+.checkbox3.checkbox-sm label::before {
+    width: 14px;
+    height: 14px;
+    line-height: 14px
+}
+
+.checkbox3.checkbox-sm label::after {
+    width: 12px;
+    height: 12px
+}
+
+.checkbox3.checkbox-lg label {
+    padding: 15px 0 15px 40px
+}
+
+.checkbox3.checkbox-lg label::before {
+    width: 28px;
+    height: 27px;
+    line-height: 24px
+}
+
+.checkbox3.checkbox-lg label::after {
+    width: 26px;
+    height: 25px
+}
+
+.checkbox3.checkbox-inline, .radio3.radio-inline {
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 20px
+}
+
+.checkbox3.checkbox-inline input[type=checkbox], .checkbox3.checkbox-inline input[type=radio], .radio3.radio-inline input[type=checkbox], .radio3.radio-inline input[type=radio] {
+    position: absolute
+}
+
+.checkbox3.checkbox-check input:checked + label::after, .checkbox3.checkbox-check label::after {
+    border: 0
+}
+
+.checkbox3.checkbox-check label::after {
+    content: "\f00c";
+    font-family: FontAwesome;
+    font-size: 12px;
+    color: #FFF;
+    width: 19px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    border-width: 0
+}
+
+.checkbox3.checkbox-check.checkbox-sm label::after {
+    font-size: 9px;
+    line-height: 12px;
+    width: 12px
+}
+
+.checkbox3.checkbox-check.checkbox-lg label::after {
+    font-size: 16px;
+    line-height: 26px;
+    width: 26px
+}
+
+.checkbox3.checkbox-check.checkbox-light label::after {
+    color: #444
+}
+
+.checkbox3.checkbox-circle label::after, .checkbox3.checkbox-circle label::before {
+    -moz-border-radius: 20px;
+    border-radius: 20px
+}
+
+.checkbox3.checkbox-round label::after, .checkbox3.checkbox-round label::before, .checkbox3.checkbox-s1 label::after, .checkbox3.checkbox-s1 label::before {
+    -moz-border-radius: 4px;
+    border-radius: 4px
+}
+
+.checkbox3.checkbox-light label::before {
+    background-color: transparent
+}
+
+.checkbox3.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #444
+}
+
+.checkbox3.checkbox-info input:checked + label::before {
+    background-color: #2caef5;
+    border-color: #2caef5
+}
+
+.checkbox3.checkbox-primary input:checked + label::before {
+    background-color: #4183d7;
+    border-color: #4183d7
+}
+
+.checkbox3.checkbox-success input:checked + label::before {
+    background-color: #36b846;
+    border-color: #36b846
+}
+
+.checkbox3.checkbox-warning input:checked + label::before {
+    background-color: #ff9c00;
+    border-color: #ff9c00
+}
+
+.checkbox3.checkbox-danger input:checked + label::before {
+    background-color: #e50011;
+    border-color: #e50011
+}
+
+.checkbox3.checkbox-primary.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #4183d7
+}
+
+.checkbox3.checkbox-primary.checkbox-light input:checked + label::after {
+    color: #4183d7
+}
+
+.checkbox3.checkbox-info.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #2caef5
+}
+
+.checkbox3.checkbox-info.checkbox-light input:checked + label::after {
+    color: #2caef5
+}
+
+.checkbox3.checkbox-success.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #36b846
+}
+
+.checkbox3.checkbox-success.checkbox-light input:checked + label::after {
+    color: #36b846
+}
+
+.checkbox3.checkbox-warning.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #ff9c00
+}
+
+.checkbox3.checkbox-warning.checkbox-light input:checked + label::after {
+    color: #ff9c00
+}
+
+.checkbox3.checkbox-danger.checkbox-light input:checked + label::before {
+    background-color: transparent;
+    border-color: #e50011
+}
+
+.checkbox3.checkbox-danger.checkbox-light input:checked + label::after {
+    color: #e50011
+}
+
+.radio3 {
+    position: relative
+}
+
+.radio3 input {
+    position: absolute;
+    left: -9999px
+}
+
+.radio3 label {
+    display: block;
+    position: relative;
+    padding: 11px 0 11px 30px;
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: -4px
+}
+
+.radio3 label::after, .radio3 label::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0
+}
+
+.radio3 label::before {
+    width: 21px;
+    height: 21px;
+    border: 1px solid #CCC;
+    -webkit-transition: background-color .2s;
+    -moz-transition: background-color .2s;
+    transition: background-color .2s
+}
+
+.radio3 label::after {
+    width: 19px;
+    height: 19px;
+    border: 12px solid #FFF;
+    margin: 1px;
+    -webkit-transition: all 50ms;
+    -moz-transition: all 50ms;
+    transition: all 50ms;
+    opacity: 0
+}
+
+.radio3 input:checked + label::before {
+    font-family: FontAwesome;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #444;
+    border-color: #444;
+    color: #fff
+}
+
+.radio3 input:checked + label::after {
+    border: 3px solid #FFF;
+    opacity: 1
+}
+
+.radio3.radio-check label::after, .radio3.radio-check.radio-light label::after {
+    content: "\f00c";
+    font-family: FontAwesome;
+    color: #FFF;
+    width: 19px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    border-width: 0
+}
+
+.radio3 label::after, .radio3 label::before {
+    -moz-border-radius: 20px;
+    border-radius: 20px
+}
+
+.radio3.radio-check input:checked + label::after {
+    border-width: 0
+}
+
+.radio3.radio-check.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-check.radio-light input:checked + label::after {
+    border-width: 0;
+    color: #444
+}
+
+.radio3.radio-sm label {
+    padding: 8px 0 8px 22px
+}
+
+.radio3.radio-sm label::before {
+    width: 14px;
+    height: 14px;
+    line-height: 14px
+}
+
+.radio3.radio-sm label::after {
+    width: 12px;
+    height: 12px
+}
+
+.radio3.radio-lg label {
+    padding: 15px 0 15px 40px
+}
+
+.radio3.radio-lg label::before {
+    width: 28px;
+    height: 27px;
+    line-height: 24px
+}
+
+.radio3.radio-lg label::after {
+    width: 26px;
+    height: 25px
+}
+
+.radio3.radio-check.radio-sm label::after {
+    font-size: 9px;
+    line-height: 12px;
+    width: 12px
+}
+
+.radio3.radio-check.radio-lg label::after {
+    font-size: 16px;
+    line-height: 26px;
+    width: 26px
+}
+
+.radio3.radio-primary input:checked + label::before {
+    background-color: #4183d7;
+    border-color: #4183d7
+}
+
+.radio3.radio-info input:checked + label::before {
+    background-color: #2caef5;
+    border-color: #2caef5
+}
+
+.radio3.radio-success input:checked + label::before {
+    background-color: #36b846;
+    border-color: #36b846
+}
+
+.radio3.radio-warning input:checked + label::before {
+    background-color: #ff9c00;
+    border-color: #ff9c00
+}
+
+.radio3.radio-danger input:checked + label::before {
+    background-color: #e50011;
+    border-color: #e50011
+}
+
+.radio3.radio-primary.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-primary.radio-light input:checked + label::after {
+    color: #4183d7
+}
+
+.radio3.radio-info.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-info.radio-light input:checked + label::after {
+    color: #2caef5
+}
+
+.radio3.radio-success.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-success.radio-light input:checked + label::after {
+    color: #36b846
+}
+
+.radio3.radio-warning.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-warning.radio-light input:checked + label::after {
+    color: #ff9c00
+}
+
+.radio3.radio-danger.radio-light input:checked + label::before {
+    background-color: transparent
+}
+
+.radio3.radio-danger.radio-light input:checked + label::after {
+    color: #e50011
+}
+
+label#checkbox-1 {
+    margin-left: 30px;
+}
+
+section h1 {
+    margin: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fffded;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.discount-section, .offers-section {
+    margin-bottom: 30px;
+}
+
+.discount-section h2, .offers-section h2 {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+}
+
+form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+#discount-message {
+    margin-top: 10px;
+    font-size: 16px;
+    color: green;
+}
+
+#discount-message.hidden {
+    display: none;
+}
+
+.offer {
+    background-color: #f1f1f1;
+    border-left: 4px solid #007BFF;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.offer h3 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.offer p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+
+.search-section {
+    margin-bottom: 30px;
+}
+
+.search-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-section label {
+    font-size: 14px;
+    color: #333;
+}
+
+.search-section input, .search-section select, .search-section button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.search-section button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.search-section button:hover {
+    background-color: #0056b3;
+}
+
+.results-section {
+    margin-top: 30px;
+}
+
+#results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#results-table th, #results-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+#results-table th {
+    background-color: #f2f2f2;
+}
+
+#results-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.alert-warning {
+    background: linear-gradient(90deg, #ffff80, #fd7171);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background: linear-gradient(90deg, #0d0d0d, #333333);
+    color: #ffffff;
+}
+
+footer .container {
+    background: linear-gradient(90deg, #0d0d0d, #333333);
+    border: none;
+
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+footer .fab {
+    transition: transform 0.2s ease-in-out;
+}
+
+footer .fab:hover {
+    transform: scale(1.2);
+}
+
+.disabled {
+    pointer-events: none; /* Ngăn chặn tương tác */
+    background-color: rgba(211, 211, 211, 0.5); /* Màu xám nhẹ với độ trong suốt */
+    opacity: 0.5; /* Làm mờ div */
+}
+
+body {
+    background-color: #f8f9fa; /* Màu nền nhẹ nhàng */
+    font-size: 1.1rem; /* Tăng kích thước font */
+}
+
+.box {
+    border: 2px solid #007bff; /* Đổi màu viền sang xanh dương */
+    padding: 20px; /* Tăng khoảng cách padding */
+    border-radius: 8px;
+    background-color: #ffffff; /* Màu nền trắng cho box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    margin-bottom: 20px; /* Khoảng cách giữa các box */
+    height: auto; /* Để box tự động điều chỉnh chiều cao */
+}
+
+.scrollable-box {
+    max-height: 200px; /* Tăng chiều cao tối đa */
+    overflow-y: auto;
+    padding-right: 15px; /* Khoảng cách cho thanh cuộn */
+}
+
+.dropdown-menu {
+    border-radius: 8px; /* Bo tròn các góc dropdown */
+}
+
+.btn-outline-dark {
+    border-radius: 8px; /* Bo tròn nút */
+    padding: 10px 20px; /* Tăng kích thước padding cho nút */
+    font-size: 1rem; /* Tăng kích thước font cho nút */
+}
+
+.modal-content {
+    border-radius: 8px; /* Bo tròn góc modal */
+}
+
+.form-control {
+    font-size: 1rem; /* Tăng kích thước font cho các input */
+    padding: 10px; /* Tăng kích thước padding cho các input */
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px; /* Tăng kích thước padding cho nút trong modal */
+    font-size: 1rem; /* Tăng kích thước font cho nút trong modal */
+}
+
+.room-card {
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room-header i {
+    font-size: 1.2rem;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.containerNV {
+    height: auto !important;
+}
+
+.asimaruoi {
+    height: 220px !important;
+}
+
+.no-global-style {
+    all: unset; /* Xóa toàn bộ style đã áp dụng */
+}
+
+.no-global-style * {
+    all: unset; /* Xóa style cho tất cả các phần tử con */
+}

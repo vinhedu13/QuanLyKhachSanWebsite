@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><i class="fa-solid fa-house"></i> Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-bell"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notificationDropdown">
+                        <li>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ url_for('static', filename='images/dalat.jpg') }}" alt="Đà Lạt" class="img-thumbnail" width="100">
+                                <div class="ms-2">
+                                    <span>Da Lat</span><br>
+                                    <small>Nhập mã Deal50 để giảm 50%</small><br>
+                                    <small>18-11-2024 10:00:07</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ url_for('static', filename='images/danang.jpg') }}" alt="Đà Nẵng" class="img-thumbnail" width="100">
+                                <div class="ms-2">
+                                    <span>Da Nang</span><br>
+                                    <small>Nhập mã Deal50 để giảm 50%</small><br>
+                                    <small>18-11-2024 10:00:07</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ url_for('static', filename='images/hoian.jpg') }}" alt="Hội An" class="img-thumbnail" width="100">
+                                <div class="ms-2">
+                                    <span>Hoi An</span><br>
+                                    <small>Nhập mã Deal50 để giảm 50%</small><br>
+                                    <small>18-11-2024 10:00:07</small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="text-success" href="/" style="text-decoration: auto">
+                        <img src="{{ current_user.avatar }}" width="25" class="rounded-circle" />
+                        Chào {{ current_user.tenDangNhap }}.
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="text-danger" href="/user-logout" style="text-decoration: auto">Đăng xuất</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <button class="btn-login"><a class="nav-link" href="/sign_in">Đăng nhập</a></button>
+                </li>
+                {% endif %}
+    </div>
+</nav>
